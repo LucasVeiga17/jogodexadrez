@@ -13,7 +13,7 @@ namespace xadrez_console
                 Tabuleiro tab = new Tabuleiro(8, 8);
 
                 tab.ColocarPeca(new Torre(Cor.Preta, tab), new Posicao(0, 0));
-                tab.ColocarPeca(new Torre(Cor.Preta, tab), new Posicao(0, 8));
+                tab.ColocarPeca(new Torre(Cor.Preta, tab), new Posicao(0, 7));
                 tab.ColocarPeca(new Cavalo(Cor.Preta, tab), new Posicao(0, 1));
                 tab.ColocarPeca(new Cavalo(Cor.Preta, tab), new Posicao(0, 6));
                 tab.ColocarPeca(new Bispo(Cor.Preta, tab), new Posicao(0, 2));
