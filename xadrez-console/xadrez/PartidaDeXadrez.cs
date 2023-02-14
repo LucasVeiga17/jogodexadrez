@@ -27,9 +27,12 @@ namespace xadrez_console.xadrez
         {
             Peca p = Tab.RetiraPeca(origem);
             p.IncrementarQtdMovimentos();
-            Tab.RetiraPeca(destino);
-            Peca PecaCapiturada = Tab.RetiraPeca(destino);
+            Peca PecaCapturada = Tab.RetiraPeca(destino);
             Tab.ColocarPeca(p, destino);
+            if(PecaCapturada != null)
+            {
+                Capturadas.Add(PecaCapturada);
+            }
         }
 
         public void RealizaJogada(Posicao origem, Posicao destino)
@@ -70,6 +73,31 @@ namespace xadrez_console.xadrez
             {
                 JogadorAtual = Cor.Branca;
             }
+        }
+        public HashSet<Peca> PecasCapturadas(Cor cor)
+        {
+            HashSet<Peca> aux = new HashSet<Peca>();
+            foreach(Peca x in Capturadas)
+            {
+                if (x.Cor == cor)
+                {
+                    aux.Add(x);
+                }
+            }
+            return aux;
+        }
+        public HashSet<Peca> PecasEmJogo(Cor cor)
+        {
+            HashSet<Peca> aux = new HashSet<Peca>();
+            foreach (Peca x in Pecas)
+            {
+                if (x.Cor == cor)
+                {
+                    aux.Add(x);
+                }
+            }
+            aux.ExceptWith(PecasCapturadas(cor));
+            return aux;
         }
         public void ColocarNovaPeca(char coluna, int linha, Peca peca)
         {
