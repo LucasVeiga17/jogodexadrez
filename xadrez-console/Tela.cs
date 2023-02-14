@@ -39,7 +39,7 @@ namespace xadrez_console
                     }
                     Posicao pos = new Posicao(i, j);
                     ImprimirPeca(tab.peca(pos));
-
+                    Console.BackgroundColor = FundoOriginal;
                 }
                 Console.WriteLine();
             }
