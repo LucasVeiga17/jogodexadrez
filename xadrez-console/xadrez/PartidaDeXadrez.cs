@@ -139,6 +139,20 @@ namespace xadrez_console.xadrez
             {
                 Xeque = false;
             }
+            Peca p = Tab.peca(destino);
+
+            //promoção
+            if(p is Peao)
+            {
+                if(p.Cor == Cor.Branca && p.Posicao.Linha == 0 || p.Cor == Cor.Preta && p.Posicao.Linha == 7)
+                {
+                    p = Tab.RetiraPeca(destino);
+                    Pecas.Remove(p);
+                    Peca Rainha = new Rainha(p.Cor, Tab);
+                    Tab.ColocarPeca(Rainha, destino);
+                }
+            }
+
             if (EstaEmXequeMate(Adversario(JogadorAtual)))
             {
                 Terminada = true;
@@ -148,7 +162,6 @@ namespace xadrez_console.xadrez
                 Turno++;
                 MudaJogador();
             }
-            Peca p = Tab.peca(destino);
             //jogadaespecial EnPassant
             if(p is Peao && destino.Linha == origem.Linha + 2 || destino.Linha == origem.Linha - 2)
             {
